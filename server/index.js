@@ -11,15 +11,16 @@ app.options("*", cors());
 app.get("/run-pyscript", (req, res) => {
   var str = "meow";
   let output;
+  let path = require("path");
 
-  const python = spawn("python3", ["pyscripts/script.py", str]);
+  const python = spawn(".pyvenv/bin/python3", ["pyscripts/script.py", str]);
   python.stdout.on("data", (data) => {
     console.log("Piping data from python script...");
     console.log(data.toString());
     output = data.toString();
   });
   python.on("close", (code) => {
-    console.log(`child process close all stdio with code ${code}`);
+    console.log(`child process: close all stdio with code ${code}`);
     res.json({ output: output });
   });
 });
