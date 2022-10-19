@@ -11,8 +11,6 @@ app.options("*", cors());
 app.get("/run-pyscript", (req, res) => {
   var str = "meow";
   let output;
-  let path = require("path");
-
   const python = spawn(".pyvenv/bin/python3", ["pyscripts/script.py", str]);
   python.stdout.on("data", (data) => {
     console.log("Piping data from python script...");
