@@ -44,6 +44,9 @@ jspm_packages/
 # Python Virtual Environment
 .pyvenv
 
+# Tensorflow Model
+.model
+
 # TypeScript v1 declaration files
 typings/
 
