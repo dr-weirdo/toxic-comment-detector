@@ -8,8 +8,13 @@ app.use(express.json());
 app.use(cors());
 app.options("*", cors());
 
-app.get("/run-pyscript", (req, res) => {
-  var str = "meow";
+app.get("/run-pyscript/:text", (req, res) => {
+  console.log(req.body);
+  var temp = req.params.text;
+  console.log(temp);
+  let str = JSON.parse(temp);
+  str = str.input;
+  console.log(str);
   let output;
   const python = spawn(".pyvenv/bin/python3", ["pyscripts/script.py", str]);
   python.stdout.on("data", (data) => {
